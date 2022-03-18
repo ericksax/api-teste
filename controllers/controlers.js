@@ -24,6 +24,14 @@ module.exports = {
     }
   },
 
+  user: async (req, res) => {
+    const user = await User.findById({ _id: req.params.id })
+    console.log(user)
+    if (!user) return res.status(400).json({ message: "user does not exists" })
+
+    return res.status(200).json({ user })
+  },
+
   update: async (req, res) => {
     const { email, login, name, register } = req.body;
     try {
